@@ -8,6 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface URLShortenerRepository extends JpaRepository<URLShortener,Integer> {
     @Transactional
     @Query(nativeQuery = true, value = "Select * from URLShortener element " +
-            "where element.alias = ?1 ")
+            "where element.alias = ?1 limit 1 ")
     URLShortener findByAlias(String alias);
+
+    @Transactional
+    @Query(nativeQuery = true, value = "Select * from URLShortener element " +
+            "where element.url = ?1 limit 1 ")
+    URLShortener findByURL(String url);
 }

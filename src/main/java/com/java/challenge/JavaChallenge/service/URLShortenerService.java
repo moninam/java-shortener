@@ -33,5 +33,8 @@ public class URLShortenerService {
     public URLShortener findByAlias(String alias){
         return repository.findByAlias(alias);
     }
+    public URLShortener findByURL(String url){
+        return repository.findByURL(url);
+    }
 
 }
