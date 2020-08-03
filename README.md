@@ -49,7 +49,7 @@ http://localhost:8080/fcbkcm
 Response: 
 ** Debe redirigirte al sitio correspondiente, en este caso a facebook.com
 
-###POST
+### POST
 Este verbo realiza el almacenamiento de un URL y le asigna un alias generado por un par de reglas.
 
 La url de acceso para este endpoint es la siguiente:
