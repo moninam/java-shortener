@@ -85,6 +85,8 @@ En caso contrario debe mostrar un mensaje como el siguiente:
 #### Ejemplo
 Request:
 ```bash
+http://localhost:8080/
+
 {
     "url":"facebook.com"
 }
