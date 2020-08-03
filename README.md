@@ -117,4 +117,5 @@ En la carpeta Repository se tiene el repositorio JPA que tiene acceso a los dato
 En la carpeta Service se tienen las funciones que hacen llamado al Repositorio JPA de la aplicación, dichas funciones son accesadas por el controlador para manejar las operaciones de almacenamiento y obtención de la información.
 ####
 En la carpeta Util se tiene una clase llamada "URLOperations", dicha clase se encarga de hacer todas las operaciones de generar los alias y detectar el tipo de caso que tiene el URL (Google, Yahoo u otro).
+####
 La clase principal JavaChallengeApplication se encarga de la ejecución del la aplicación base.
