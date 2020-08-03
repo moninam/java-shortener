@@ -27,19 +27,37 @@ public class URLGeneratorController {
     @RequestMapping(value = {"/", "/{alias}"},method= RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getByAlias(@PathVariable(name = "alias", required = false) String alias){
         logger.debug("alias {}",alias);
-        try{
-            URI url = new URI("http://www.yahoo.com");
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setLocation(url);
-            return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
-        } catch (URISyntaxException exc){
-            return new ResponseEntity<>("Fallo", HttpStatus.NOT_FOUND);
+        URLShortener element = service.findByAlias(alias);
+
+        if (element != null){
+            try{
+                String link = element.getUrl();
+                String temporal = new String(link);
+                if (!temporal.startsWith("http://") && !temporal.startsWith("https://") )link = "http://" + link;
+
+                URI url = new URI(link);
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setLocation(url);
+                return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+            } catch (URISyntaxException exc){
+                String error = new JSONObject()
+                        .put("code",HttpStatus.NOT_FOUND)
+                        .put("error","No se encontró el sitio para el URL dado")
+                        .toString();
+                return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+            }
         }
+        String error = new JSONObject()
+                .put("code",HttpStatus.NOT_FOUND)
+                .put("error","No se encontró el sitio para el alias dado")
+                .toString();
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = {"/"},method= RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> setAlias(@RequestBody URLShortener elemento){
         String url = elemento.getUrl();
+
         if (operations.isValid(url)){
             URLShortener element = service.findByURL(url);
 
@@ -48,29 +66,29 @@ public class URLGeneratorController {
 
                 if (operations.isGoogle(url)){
                     alias = operations.aliasAlphaGenerator();
-                    logger.debug("google {}",alias);
                 } else if(operations.isYahoo(url)){
                     alias = operations.aliasAlphaNumericGenerator();
-                    logger.debug("yahoo {}",alias);
                 } else{
                     alias = operations.aliasCustomGenerator(url);
-                    logger.debug("custom {}",alias);
                 }
 
                 URLShortener temp = new URLShortener();
                 temp.setUrl(url);
                 temp.setAlias(alias);
                 service.save(temp);
+
                 String nElement = new JSONObject()
                         .put("code",HttpStatus.OK)
                         .put("alias",temp.getAlias())
                         .toString();
+
                 return new ResponseEntity<>(nElement, HttpStatus.OK);
             }
             String aElement = new JSONObject()
                     .put("code",HttpStatus.OK)
                     .put("alias",element.getAlias())
                     .toString();
+
             return new ResponseEntity<>(aElement, HttpStatus.OK);
 
 

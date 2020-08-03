@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "URL_SHORTENER")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class URLShortener {
     @Column(name="id")
