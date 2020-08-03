@@ -2,7 +2,7 @@
 
 Este programa es realizado para el Java Challenge de NearSoft, se trata de una API que genera un acortador de URLs.
 
-#Requisitos
+# Requisitos
 Debes tener instalado una instancia de Maven en tu equipo y agregar las variables de entorno MAVEN_HOME y JAVA_HOME para su ejecución en la consola de comandos.
 Puedes obtener más información en el siguiente link: https://maven.apache.org/install.html
 
