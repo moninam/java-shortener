@@ -105,12 +105,16 @@ De igual forma se utilizo la herramienta Spring Boot para la realización de la 
 ![alt text](https://static.javatpoint.com/springboot/images/spring-boot-architecture2.png)
 
 La estructura del proyecto es la siguiente:
+####
 ![alt text](https://serving.photos.photobox.com/98395175a1b71757c5770ee22dff91a99df8c3dc6b84acd58c3b238640f3e30e168c80f9.jpg)
 
 En la carpeta controller se agrego la clase URLGeneratorController que se encarga de manejar todas las peticiones o endpoints del proyecto.
+####
 Dentro de la carpeta Model se tiene la entidad "URLShortener" que corresponde al objeto que contiene el URL y alias, dicha información se mapea dentro de una base de datos In Memory.
+####
 En la carpeta Repository se tiene el repositorio JPA que tiene acceso a los datos dentro de la base de datos, funciona para el acceso y modificación de dicha información.
-
+####
 En la carpeta Service se tienen las funciones que hacen llamado al Repositorio JPA de la aplicación, dichas funciones son accesadas por el controlador para manejar las operaciones de almacenamiento y obtención de la información.
+####
 En la carpeta Util se tiene una clase llamada "URLOperations", dicha clase se encarga de hacer todas las operaciones de generar los alias y detectar el tipo de caso que tiene el URL (Google, Yahoo u otro).
 La clase principal JavaChallengeApplication se encarga de la ejecución del la aplicación base.
