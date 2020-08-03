@@ -103,3 +103,6 @@ El diseño de la aplicación se realizo pensando en una arquitectura cliente ser
 
 De igual forma se utilizo la herramienta Spring Boot para la realización de la API, cuya arquitectura puedes ver en la siguiente imagen:
 ![alt text](https://static.javatpoint.com/springboot/images/spring-boot-architecture2.png)
+
+La estructura del proyecto es la siguiente:
+![alt text](https://drive.google.com/file/d/1H8Tm9PAFevqF1fEytKxTfuRGkh4R7oqE/view?usp=sharing)
